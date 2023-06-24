@@ -30,4 +30,4 @@ while True:
     command = speech_to_text()
     if "here" in command:
         text_to_speech("Good girl")
-catgirl maids co
+catgirl maids co >///<
