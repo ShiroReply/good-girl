@@ -1,0 +1,32 @@
+import speech_recognition as sr
+import pyttsx3
+
+# Initialize the speech recognition and synthesis engines
+recognizer = sr.Recognizer()
+engine = pyttsx3.init()
+
+def speech_to_text():
+    with sr.Microphone() as source:
+        print("Listening...")
+        audio = recognizer.listen(source)
+
+    try:
+        text = recognizer.recognize_google(audio)
+        print("You said:", text)
+        return text.lower()
+    except sr.UnknownValueError:
+        print("Sorry, I could not understand you.")
+        return ""
+    except sr.RequestError as e:
+        print("Sorry, there was an error with the speech recognition service.")
+        return ""
+
+def text_to_speech(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Main loop
+while True:
+    command = speech_to_text()
+    if "here" in command:
+        text_to_speech("Good girl")
